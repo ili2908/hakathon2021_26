@@ -7,10 +7,12 @@
 
  window.addEventListener('load', function () {
 			console.log(window);
-			web3=window.Web3;
-            if (typeof web3 !== 'undefined') {
-                console.log(window)
+			if (window.ethereum) {
+				window.web3 = new Web3(window.ethereum);
+				window.ethereum.enable();
+				return true;
 			}
+			return false;
  });
 function minus(event){
 	event.path[1].remove();
