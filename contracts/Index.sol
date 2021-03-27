@@ -241,23 +241,26 @@ contract ERC20Detailed is ERC20 {
 contract INDEXTOKEN is ERC20Mintable, ERC20Detailed {
     event debug(uint256 out);
     uint8 public constant DECIMALS = 18;
-    uint256 public constant INITIAL_SUPPLY = 100000 * (10 ** uint256(DECIMALS));
+    uint256 public constant INITIAL_SUPPLY = 0;
     address[] public _tokens;
     uint8[] internal  _parts;
     address internal constant UNISWAP_ROUTER_ADDRESS = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D ;
     address internal constant WETH = 0xc778417E063141139Fce010982780140Aa0cD5Ab ;
     address internal constant PUSD = 0xC11090b333e0a8a88cb5d26f1f663CF859fcB861 ;
+    address internal constant owner = 0x409676686041B31DD59939D1484348e07DFbD8A1;
     IUniswapV2Router02 public uniswapRouter;
     /**
      * @dev Constructor that gives msg.sender all of existing tokens.
      */
-    constructor (address[] memory tokens,uint8[] memory parts) public ERC20Detailed("INDEXT", "IDT", DECIMALS) {
+    constructor (address[] memory tokens,uint8[] memory parts) public payable ERC20Detailed("INDEXT", "IDT", DECIMALS) {
         for(uint i=0;i<tokens.length;i++){
             _tokens.push(tokens[i]);
         }
         for(uint i=0;i<parts.length;i++){
             _parts.push(parts[i]);
         }
+        require(msg.value>=1000,"please send peyment");
+        payable(owner).transfer(1000);
         _mint(msg.sender, INITIAL_SUPPLY);
         uniswapRouter = IUniswapV2Router02(UNISWAP_ROUTER_ADDRESS);
     }
@@ -284,13 +287,13 @@ contract INDEXTOKEN is ERC20Mintable, ERC20Detailed {
     function sell(uint256 amount) public{
         for(uint i=0;i<_tokens.length;i++){
             (bool successbt, bytes memory databt) =  _tokens[i].call(
-                abi.encodeWithSignature("transferFrom(address,address,uint256)",address(this),msg.sender,SM.mul(amount,_parts[i]))
+                abi.encodeWithSignature("transfer(address,uint256)",msg.sender,SM.mul(amount,_parts[i]))
             );
-            require(successbt,string(abi.encodePacked("error with ",_tokens[i])));
+            require(successbt,"err");
              
         }
        
-        _burnFrom(msg.sender,amount);
+        _burn(msg.sender,amount);
     }
     function sellUSD(uint256 amount) public{
         uint8 a=0;
@@ -314,7 +317,7 @@ contract INDEXTOKEN is ERC20Mintable, ERC20Detailed {
             uniswapRouter.swapExactTokensForTokens(SM.mul(amount,_parts[i]),amountOUT,path2,msg.sender,block.timestamp+25);
         }
        
-        _burnFrom(msg.sender,amount);
+        _burn(msg.sender,amount);
     }
     function buyUSD(uint256 amount) public{
         uint8 a=0;
@@ -361,20 +364,30 @@ contract INDEXTOKEN is ERC20Mintable, ERC20Detailed {
 }
 
 contract TESTER{
-    function get() public returns (uint256){
+    function get() public{
         address UNISWAP_ROUTER_ADDRESS = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D ;
-        address WETH = 0xc778417E063141139Fce010982780140Aa0cD5Ab ;
+       
         address PUSD = 0xC11090b333e0a8a88cb5d26f1f663CF859fcB861 ;
-        IUniswapV2Router02 uniswapRouter = IUniswapV2Router02(UNISWAP_ROUTER_ADDRESS);
+        IUniswapV2Router02 uniswapRouter = IUniswapV2Router02(UNISWAP_ROUTER_ADDRESS); 
+        address WETH = uniswapRouter.WETH() ;
         address[] memory path = new address[](2);
-        path[1]=WETH;
-        path[0]=PUSD;
-        uint256 amountIN=SM.div(SM.mul(uniswapRouter.getAmountsIn(1,path)[0],101),100);
-        (bool successbt,  bytes memory databt) = WETH.call(
-                abi.encodeWithSignature("approve(address,uint256)",UNISWAP_ROUTER_ADDRESS,2)
+        path[0]=uniswapRouter.WETH();
+        path[1]=PUSD;
+        uint256 amountOUT=uniswapRouter.getAmountsOut(1,path)[1];
+      
+        (bool success,  bytes memory data) = WETH.call(
+                abi.encodeWithSignature("approve(address,uint256)",UNISWAP_ROUTER_ADDRESS,20000)
         );
-        require(successbt,"err");
-        uniswapRouter.swapExactTokensForTokens(amountIN,1,path,msg.sender,block.timestamp+25);
-        return amountIN;
+        require(success,"err");
+        uniswapRouter.swapExactTokensForTokens(1,amountOUT,path,msg.sender,block.timestamp+25);
+        //return amountIN;
+    }
+    function got() public view returns (address){
+        address UNISWAP_ROUTER_ADDRESS = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D ;
+       
+        address PUSD = 0xC11090b333e0a8a88cb5d26f1f663CF859fcB861 ;
+        IUniswapV2Router02 uniswapRouter = IUniswapV2Router02(UNISWAP_ROUTER_ADDRESS); 
+        return uniswapRouter.WETH();
     }
 }
+
