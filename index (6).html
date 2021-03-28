@@ -460,7 +460,7 @@
 							parts:parts
 					}})
 				}catch(e){
-				
+				 console.log(err);
 				}
 					alert("your tokens address: "+newContractInstance.options.address) // instance with the new contract address
 				});
@@ -553,7 +553,7 @@
 					
 					if(this.indexBuy.currency=="PUSD"){
 						var TokenContract = new web3.eth.Contract(abi,PUSD);
-						TokenContract.methods.approve(this.indexBuy.token.id,this.indexBuy.count*i.part*100000).send({from: addresses[0]})
+						TokenContract.methods.approve(this.indexBuy.token.id,this.indexBuy.count*i.part*10000).send({from: addresses[0]})
 						.on('transactionHash', function(hash){
 							console.log(hash);
 						})
@@ -565,10 +565,19 @@
 						})
 					
 					
+					
+						IndexContract.methods.buyUSD(this.indexBuy.count).send({from: addresses[0]}).on('transactionHash', function(hash){
+								console.log(hash);
+							})
+							.on('confirmation', function(confirmationNumber, receipt){
+								
+							})
+							.on('receipt', function(receipt){
+								console.log(receipt);
+							})
+						
+						return;
 					}
-					
-					
-					
 					for(i of this.indexBuy.token.parts){
 						var TokenContract = new web3.eth.Contract(abi,i.id);
 						TokenContract.methods.approve(this.indexBuy.token.id,this.indexBuy.count*i.part).send({from: addresses[0]})
