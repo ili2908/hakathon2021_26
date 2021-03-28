@@ -556,7 +556,9 @@
 					
 					if(this.indexBuy.currency=="PUSD"){
 						var TokenContract = new web3.eth.Contract(abi,PUSD);
-						TokenContract.methods.approve(this.indexBuy.token.id,TokenContract.methods.balanceOf(addresses[0]).call()).send({from: addresses[0]})
+						TokenContract.methods.balanceOf(addresses[0]).call().then((resp)=>{
+						console.log(resp);
+						TokenContract.methods.approve(this.indexBuy.token.id,resp).send({from: addresses[0]})
 						.on('transactionHash', function(hash){
 							console.log(hash);
 						})
@@ -605,6 +607,7 @@
 						.on('receipt', function(receipt){
 							console.log(receipt);
 						})
+				})
 
 				})
             }
