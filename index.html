@@ -555,8 +555,9 @@
 					PUSD = addressTable["PUSD"]
 					var TokenContract = new web3.eth.Contract(abi,PUSD);
 					TokenContract.methods.balanceOf(addresses[0]).call().then((resp)=>{
-						if(this.indexBuy.currency=="PUSD"){
+							if(this.indexBuy.currency=="PUSD"){
 								console.log(resp);
+								var TokenContract = new web3.eth.Contract(abi,PUSD);
 								TokenContract.methods.approve(this.indexBuy.token.id,resp).send({from: addresses[0]})
 								.on('transactionHash', function(hash){
 									console.log(hash);
