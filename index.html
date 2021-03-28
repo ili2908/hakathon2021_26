@@ -556,7 +556,7 @@
 					
 					if(this.indexBuy.currency=="PUSD"){
 						var TokenContract = new web3.eth.Contract(abi,PUSD);
-						TokenContract.methods.approve(this.indexBuy.token.id,this.indexBuy.count*i.part*10000).send({from: addresses[0]})
+						TokenContract.methods.approve(this.indexBuy.token.id,this.indexBuy.count*10000000).send({from: addresses[0]})
 						.on('transactionHash', function(hash){
 							console.log(hash);
 						})
