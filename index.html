@@ -553,61 +553,60 @@
 					abi=[{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"}]
 					var IndexContract = new web3.eth.Contract([{"inputs":[{"internalType":"address[]","name":"tokens","type":"address[]"},{"internalType":"uint8[]","name":"parts","type":"uint8[]"},{"internalType":"string","name":"symbol","type":"string"}],"stateMutability":"payable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"out","type":"uint256"}],"name":"debug","type":"event"},{"inputs":[],"name":"DECIMALS","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"INITIAL_SUPPLY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"_tokens","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"buy","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"buyUSD","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"mint","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"sell","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"sellUSD","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"uniswapRouter","outputs":[{"internalType":"contract IUniswapV2Router02","name":"","type":"address"}],"stateMutability":"view","type":"function"}],this.indexBuy.token.id)
 					PUSD = addressTable["PUSD"]
-					
-					if(this.indexBuy.currency=="PUSD"){
-						var TokenContract = new web3.eth.Contract(abi,PUSD);
-						TokenContract.methods.balanceOf(addresses[0]).call().then((resp)=>{
-						console.log(resp);
-						TokenContract.methods.approve(this.indexBuy.token.id,resp).send({from: addresses[0]})
-						.on('transactionHash', function(hash){
-							console.log(hash);
+					var TokenContract = new web3.eth.Contract(abi,PUSD);
+					TokenContract.methods.balanceOf(addresses[0]).call().then((resp)=>{
+						if(this.indexBuy.currency=="PUSD"){
+								console.log(resp);
+								TokenContract.methods.approve(this.indexBuy.token.id,resp).send({from: addresses[0]})
+								.on('transactionHash', function(hash){
+									console.log(hash);
+								})
+								.on('confirmation', function(confirmationNumber, receipt){
+
+								})
+								.on('receipt', function(receipt){
+									console.log(receipt);
+								})
+
+
+
+								IndexContract.methods.buyUSD(this.indexBuy.count).send({from: addresses[0]}).on('transactionHash', function(hash){
+										console.log(hash);
+									})
+									.on('confirmation', function(confirmationNumber, receipt){
+
+									})
+									.on('receipt', function(receipt){
+										console.log(receipt);
+									})
+
+								return;
+							}
+							for(i of this.indexBuy.token.parts){
+								var TokenContract = new web3.eth.Contract(abi,i.id);
+								TokenContract.methods.approve(this.indexBuy.token.id,this.indexBuy.count*i.part).send({from: addresses[0]})
+								.on('transactionHash', function(hash){
+									console.log(hash);
+								})
+								.on('confirmation', function(confirmationNumber, receipt){
+
+								})
+								.on('receipt', function(receipt){
+									console.log(receipt);
+								})
+
+							}
+							console.log(IndexContract);
+							IndexContract.methods.buy(this.indexBuy.count).send({from: addresses[0]}).on('transactionHash', function(hash){
+									console.log(hash);
+								})
+								.on('confirmation', function(confirmationNumber, receipt){
+
+								})
+								.on('receipt', function(receipt){
+									console.log(receipt);
+								})
 						})
-						.on('confirmation', function(confirmationNumber, receipt){
-							
-						})
-						.on('receipt', function(receipt){
-							console.log(receipt);
-						})
-					
-					
-					
-						IndexContract.methods.buyUSD(this.indexBuy.count).send({from: addresses[0]}).on('transactionHash', function(hash){
-								console.log(hash);
-							})
-							.on('confirmation', function(confirmationNumber, receipt){
-								
-							})
-							.on('receipt', function(receipt){
-								console.log(receipt);
-							})
-						
-						return;
-					}
-					for(i of this.indexBuy.token.parts){
-						var TokenContract = new web3.eth.Contract(abi,i.id);
-						TokenContract.methods.approve(this.indexBuy.token.id,this.indexBuy.count*i.part).send({from: addresses[0]})
-						.on('transactionHash', function(hash){
-							console.log(hash);
-						})
-						.on('confirmation', function(confirmationNumber, receipt){
-							
-						})
-						.on('receipt', function(receipt){
-							console.log(receipt);
-						})
-					
-					}
-					console.log(IndexContract);
-					IndexContract.methods.buy(this.indexBuy.count).send({from: addresses[0]}).on('transactionHash', function(hash){
-							console.log(hash);
-						})
-						.on('confirmation', function(confirmationNumber, receipt){
-							
-						})
-						.on('receipt', function(receipt){
-							console.log(receipt);
-						})
-				})
 
 				})
             }
